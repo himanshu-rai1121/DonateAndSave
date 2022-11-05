@@ -8,29 +8,31 @@ class Information extends ChangeNotifier {
     Info(
         color: Colors.greenAccent.shade400,
         infoId: 1,
-        message: 'Keep social distances when you are outside.'),
+        message: 'Be knowledgeable about dengue fever.'),
     Info(
         color: Colors.deepOrangeAccent.shade400,
         infoId: 2,
-        message: 'Use hand sanitizer, mask and gloves to protect yourself.'),
+        message: 'Wear Protective Clothing.'),
     Info(
         color: Colors.pinkAccent,
         infoId: 3,
-        message:
-            'Avoid smoking and taking other drugs as it will effect your lungs.'),
+        message: 'Use mosquito deterrents'),
     Info(
         color: Colors.orangeAccent,
         infoId: 4,
-        message:
-            'Eat healthy foods and do exercise to boost your immune system.'),
+        message: 'Refrain from breeding grounds.'),
     Info(
         color: Colors.greenAccent.shade700,
         infoId: 5,
-        message: 'Consult with doctor if you feel ill.'),
+        message: 'Avoid smells that attract mosquitoes.'),
     Info(
         color: Colors.deepOrangeAccent.shade400,
         infoId: 6,
-        message: 'Read books and spend time with family to avoid depression.'),
+        message: 'Make sure your home is well-lit.'),
+    Info(
+        color: Colors.pinkAccent,
+        infoId: 7,
+        message: 'Use Mosquito Repellent.'),
   ];
 
   List<Info> get infoList {

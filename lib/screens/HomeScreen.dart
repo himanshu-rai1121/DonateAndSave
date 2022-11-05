@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   String val;
@@ -58,6 +59,16 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {},
             icon: Icon(
               Icons.pan_tool,
+              size: 25,
+              color: Theme.of(context).accentColor,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              launch('tel:102');
+            },
+            icon: Icon(
+              Icons.local_hospital,
               size: 25,
               color: Theme.of(context).accentColor,
             ),
@@ -126,6 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   userName: users[index].userName,
                   userPhone: users[index].userPhone,
                   userBlood: users[index].userBlood,
+                  userCity: users[index].userCity,
                 ),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,

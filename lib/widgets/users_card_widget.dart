@@ -9,6 +9,7 @@ class UsersCard extends StatefulWidget {
   final String userLocation;
   final String userDP;
   final String userBlood;
+  final String userCity;
 
   const UsersCard({
     this.userId,
@@ -17,6 +18,7 @@ class UsersCard extends StatefulWidget {
     this.userLocation,
     this.userDP,
     this.userBlood,
+    this.userCity,
   });
 
   @override
@@ -158,6 +160,29 @@ class _UsersCardState extends State<UsersCard> {
                   ),
                   Text(
                     widget.userLocation,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 0, 8),
+              child: Row(
+                children: <Widget>[
+                  FaIcon(
+                    FontAwesomeIcons.locationArrow,
+                    size: 16.0,
+                    color: Colors.deepOrangeAccent,
+                  ),
+                  SizedBox(
+                    width: 5.0,
+                  ),
+                  Text(
+                    widget.userCity,
                     style: TextStyle(
                       fontSize: 12,
                       fontFamily: 'Poppins',

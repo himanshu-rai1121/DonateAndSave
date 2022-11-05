@@ -36,7 +36,7 @@ class BannerScreen extends StatelessWidget {
                     style: kBannerTitleStyle,
                   ),
                   Text(
-                    ' Plasma',
+                    ' Platelet',
                     style: kBannerPlasmaTitleStyle,
                   )
                 ],
@@ -55,7 +55,7 @@ class BannerScreen extends StatelessWidget {
             FadeAnimation(
               1.7,
               Text(
-                'Recently recovered from Covid-19 ? Help others surviving by donating your plasma. Let\'s fight together to',
+                'Help others surviving by donating your platelet. Let\'s fight together to.....',
                 style: kBannerSubTitleStyle,
               ),
             ),

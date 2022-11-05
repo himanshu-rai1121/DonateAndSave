@@ -1,6 +1,8 @@
 import 'package:donate_platelets/screens/HomeScreen.dart';
 import 'package:donate_platelets/screens/edit_profile.dart';
+import 'package:donate_platelets/screens/platelet_content_screen.dart';
 import 'package:donate_platelets/screens/story_screen.dart';
+import 'package:donate_platelets/screens/platelet_content_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -53,11 +55,35 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.shareAlt,
-              color: Colors.pinkAccent.shade400,
+              color: Colors.amber.shade300,
             ),
             title: Text('Share your story'),
             onTap: () {
               Navigator.of(context).pushNamed(StoryScreen.routeName);
+            },
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.tablets,
+              color: Colors.pinkAccent.shade400,
+            ),
+            title: Text('Ways to Increase Platelet'),
+            // onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PlateletContent()));
+            },
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.tablets,
+              color: Colors.pinkAccent.shade400,
+            ),
+            title: Text('Ways to Increase Platelet'),
+            // onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PlateletContent()));
             },
           ),
         ],

@@ -12,22 +12,11 @@ class EditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nm = TextEditingController();
-    final b = TextEditingController();
-    final ph = TextEditingController();
-    final lo = TextEditingController();
+    // final nm = TextEditingController();
 
-    String name = " ";
+    String name;
 
-    void _submit() {
-      if (nm.text.isEmpty) {
-        return;
-      }
-      name = nm.text;
-      // bg = b.text;
-      // phone = ph.text;
-      // loc = lo.text;
-    }
+    // void _submit() {}
 
     //  func1(
     //  ){}
