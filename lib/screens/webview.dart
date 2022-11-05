@@ -1,6 +1,7 @@
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
 import 'package:donate_platelets/screens/edit_profile.dart';
+import 'package:donate_platelets/screens/web.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -169,7 +170,13 @@ class WebView extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Image.asset('assets/images/lalpath.png'),
+                                    // Image.asset('assets/images/lalpath.png'),
+                                    Container(
+                                        width: 130,
+                                        child: Image.asset(
+                                          'assets/images/lalpath.png',
+                                          fit: BoxFit.contain,
+                                        )),
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
@@ -199,10 +206,9 @@ class WebView extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      HomeScreen(name)),
+                                                      LalPathLab()),
                                             );
                                           },
-                                          splashColor: Colors.redAccent,
                                         ),
                                         // Text(
                                         //   'aa',
@@ -258,32 +264,45 @@ class WebView extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Image.asset('assets/images/drop1.png'),
+                                    // Image.asset('assets/images/redcliff.png'),
+                                    Container(
+                                        width: 130,
+                                        child: Image.asset(
+                                          'assets/images/redcliff.png',
+                                          fit: BoxFit.contain,
+                                        )),
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          'aa',
+                                          'Redcliffe Labs',
                                           textAlign: TextAlign.justify,
                                           textScaleFactor: 0.8,
                                           style: TextStyle(
                                             color: Colors.deepPurple,
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                             fontFamily: 'Poppins',
-                                            fontSize: 18,
+                                            fontSize: 22,
                                           ),
                                         ),
-                                        Text(
-                                          'aa',
-                                          textAlign: TextAlign.justify,
-                                          textScaleFactor: 0.8,
-                                          style: TextStyle(
-                                            color: Colors.deepPurple,
-                                            fontWeight: FontWeight.w300,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                          ),
+                                        SizedBox(
+                                          height: 25,
+                                        ),
+                                        MaterialButton(
+                                          height: 40,
+                                          minWidth: 90,
+                                          color: Colors.teal,
+                                          textColor: Colors.white,
+                                          child: new Text("Book A Test"),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      RedCliffLab()),
+                                            );
+                                          },
                                         ),
                                       ],
                                     ),
@@ -328,32 +347,45 @@ class WebView extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Image.asset('assets/images/drop1.png'),
+                                    // Image.asset('assets/images/drop1.png'),
+                                    Container(
+                                        width: 120,
+                                        child: Image.asset(
+                                          'assets/images/apollo.png',
+                                          fit: BoxFit.contain,
+                                        )),
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          'aa',
+                                          'Apollo Diagnostics',
                                           textAlign: TextAlign.justify,
                                           textScaleFactor: 0.8,
                                           style: TextStyle(
                                             color: Colors.deepPurple,
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                             fontFamily: 'Poppins',
-                                            fontSize: 18,
+                                            fontSize: 22,
                                           ),
                                         ),
-                                        Text(
-                                          'aa',
-                                          textAlign: TextAlign.justify,
-                                          textScaleFactor: 0.8,
-                                          style: TextStyle(
-                                            color: Colors.deepPurple,
-                                            fontWeight: FontWeight.w300,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                          ),
+                                        SizedBox(
+                                          height: 25,
+                                        ),
+                                        MaterialButton(
+                                          height: 40,
+                                          minWidth: 90,
+                                          color: Colors.teal,
+                                          textColor: Colors.white,
+                                          child: new Text("Book A Test"),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Apollo()),
+                                            );
+                                          },
                                         ),
                                       ],
                                     ),
@@ -398,32 +430,44 @@ class WebView extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Image.asset('assets/images/drop1.png'),
+                                    Container(
+                                        width: 130,
+                                        child: Image.asset(
+                                          'assets/images/max.png',
+                                          fit: BoxFit.contain,
+                                        )),
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          'aa',
+                                          'Max Lab',
                                           textAlign: TextAlign.justify,
                                           textScaleFactor: 0.8,
                                           style: TextStyle(
                                             color: Colors.deepPurple,
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.bold,
                                             fontFamily: 'Poppins',
-                                            fontSize: 18,
+                                            fontSize: 22,
                                           ),
                                         ),
-                                        Text(
-                                          'aa',
-                                          textAlign: TextAlign.justify,
-                                          textScaleFactor: 0.8,
-                                          style: TextStyle(
-                                            color: Colors.deepPurple,
-                                            fontWeight: FontWeight.w300,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                          ),
+                                        SizedBox(
+                                          height: 25,
+                                        ),
+                                        MaterialButton(
+                                          height: 40,
+                                          minWidth: 90,
+                                          color: Colors.teal,
+                                          textColor: Colors.white,
+                                          child: new Text("Book A Test"),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MaxLab()),
+                                            );
+                                          },
                                         ),
                                       ],
                                     ),
