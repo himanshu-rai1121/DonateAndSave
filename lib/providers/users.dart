@@ -1,0 +1,82 @@
+import 'package:donate_platelets/models/User.dart';
+import 'package:flutter/cupertino.dart';
+
+class Users extends ChangeNotifier {
+  List<User> _users = [
+    User(
+        userId: 1,
+        userName: 'Shah Fahad',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+918299587541',
+        userLocation: 'Dhaka',
+        userBlood: 'O+'),
+    User(
+        userId: 2,
+        userName: 'Zihadul Islam',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+918707656497',
+        userLocation: 'Khulna',
+        userBlood: 'O+'),
+    User(
+        userId: 3,
+        userName: 'Sheble Redwan',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+919955640114',
+        userLocation: 'Dhaka',
+        userBlood: 'B+'),
+    User(
+        userId: 4,
+        userName: 'Zubayer Alam',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+916377403312',
+        userLocation: 'Chandpur',
+        userBlood: 'O-'),
+    User(
+        userId: 5,
+        userName: 'Shunjid Rahman',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+917895430513',
+        userLocation: 'Jamalpur',
+        userBlood: 'O+'),
+    User(
+        userId: 6,
+        userName: 'Anindo Shahriar',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+880123456789',
+        userLocation: 'Pabna',
+        userBlood: 'A+'),
+    User(
+        userId: 7,
+        userName: 'Ovi Shahriar',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+880123456789',
+        userLocation: 'Pabna',
+        userBlood: 'A+'),
+    User(
+        userId: 8,
+        userName: 'Sarker Shahriar',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+880123456789',
+        userLocation: 'Pabna',
+        userBlood: 'A+'),
+    User(
+        userId: 9,
+        userName: 'John Doe',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+880123456789',
+        userLocation: 'Pabna',
+        userBlood: 'A+'),
+    User(
+        userId: 10,
+        userName: 'Hasib Khan',
+        userDP: 'assets/images/user0.png',
+        userPhone: '+880123456789',
+        userLocation: 'Pabna',
+        userBlood: 'A+'),
+  ];
+
+  List<User> get userList {
+    final baseUserList = [..._users];
+    return baseUserList;
+  }
+}
