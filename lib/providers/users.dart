@@ -14,7 +14,7 @@ class Users extends ChangeNotifier {
     User(
         userId: 2,
         userName: 'Soum Srivastava',
-        userDP: 'assets/images/user0.png',
+        userDP: 'assets/images/soum.png',
         userPhone: '+918707656497',
         userLocation: 'Rohini',
         userCity: 'Delhi',

@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 
 import 'HomeScreen.dart';
 
-class PlateletContent extends StatelessWidget {
+class WebView extends StatelessWidget {
   // static const routeName = '/stor';
-  const PlateletContent({key}) : super(key: key);
+  const WebView({key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class PlateletContent extends StatelessWidget {
       appBar: AppBar(
         title: Center(
           child: Text(
-            'Increase Platelet',
+            'NearBy Labs',
             style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.bold,
@@ -63,7 +63,7 @@ class PlateletContent extends StatelessWidget {
                 Container(
                   margin: EdgeInsetsDirectional.only(top: 20),
                   height: 180.0,
-                  child: Image.asset('assets/images/mortar.png'),
+                  child: Image.asset('assets/images/microscope.png'),
                 ),
               ),
               Padding(
@@ -97,7 +97,7 @@ class PlateletContent extends StatelessWidget {
                                     color: Color(0xFFFFBF05).withOpacity(.10),
                                   ))),
                                   child: Text(
-                                    'That being said, if you are looking for how to increase platelet counts naturally, then the list of foods below should help you to some extent. :',
+                                    'Available Labs 🏩',
                                     textAlign: TextAlign.justify,
                                     textScaleFactor: 1.0,
                                     style: TextStyle(
@@ -165,37 +165,61 @@ class PlateletContent extends StatelessWidget {
                                         bottom: BorderSide(
                                   color: Color(0xFFFFBF05).withOpacity(.10),
                                 ))),
-                                child: Text(
-                                  '1. Milk',
-                                  textAlign: TextAlign.center,
-                                  textScaleFactor: 1.0,
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset('assets/images/lalpath.png'),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          'Dr.Lal PathLabs',
+                                          textAlign: TextAlign.justify,
+                                          textScaleFactor: 0.8,
+                                          style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 22,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 25,
+                                        ),
+                                        MaterialButton(
+                                          height: 40,
+                                          minWidth: 90,
+                                          color: Colors.teal,
+                                          textColor: Colors.white,
+                                          child: new Text("Book A Test"),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      HomeScreen(name)),
+                                            );
+                                          },
+                                          splashColor: Colors.redAccent,
+                                        ),
+                                        // Text(
+                                        //   'aa',
+                                        //   textAlign: TextAlign.justify,
+                                        //   textScaleFactor: 0.8,
+                                        //   style: TextStyle(
+                                        //     color: Colors.deepPurple,
+                                        //     fontWeight: FontWeight.w300,
+                                        //     fontFamily: 'Poppins',
+                                        //     fontSize: 18,
+                                        //   ),
+                                        // ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(8.0),
-                                decoration: BoxDecoration(
-                                    border: Border(
-                                        bottom: BorderSide(
-                                  color: Color(0xFFFFBF05).withOpacity(.10),
-                                ))),
-                                child: Text(
-                                  'We all know that milk is a rich source of calcium and protein and is important in maintaining the strength of bones and muscles in our body. What is even more interesting is that milk contains vitamin K, which is an essential vitamin in the blood clotting mechanism in our body. Furthermore, it is believed that regular consumption of milk may help in improving total blood platelet counts. So, if you are looking for home remedies to increase platelets, make sure you have a glass of milk regularly.',
-                                  textAlign: TextAlign.justify,
-                                  textScaleFactor: 0.8,
-                                  style: TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontWeight: FontWeight.w300,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
+                              )
                             ],
                           ),
                         ),
@@ -230,37 +254,42 @@ class PlateletContent extends StatelessWidget {
                                         bottom: BorderSide(
                                   color: Color(0xFFFFBF05).withOpacity(.10),
                                 ))),
-                                child: Text(
-                                  '2. Papaya Leaf Extract:',
-                                  textAlign: TextAlign.center,
-                                  textScaleFactor: 1.0,
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset('assets/images/drop1.png'),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          'aa',
+                                          textAlign: TextAlign.justify,
+                                          textScaleFactor: 0.8,
+                                          style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        Text(
+                                          'aa',
+                                          textAlign: TextAlign.justify,
+                                          textScaleFactor: 0.8,
+                                          style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(8.0),
-                                decoration: BoxDecoration(
-                                    border: Border(
-                                        bottom: BorderSide(
-                                  color: Color(0xFFFFBF05).withOpacity(.10),
-                                ))),
-                                child: Text(
-                                  'This is probably the most well-known remedy for low platelet counts. If you are looking for how to increase platelet count during dengue fever, then consuming a glass or two of papaya leaf extract regularly can do the trick. It is not clear how this really works, but clinical trials have clearly demonstrated a significant benefit of papaya leaf extract in increasing platelet counts in viral fever.However, the juice of papaya leaf can be rather bitter and some people experience nausea and possibly even vomiting at times. In such a situation, oral medication in the form of capsules is now available in India that contains the same quantity of extract needed to boost up platelet counts.',
-                                  textAlign: TextAlign.justify,
-                                  textScaleFactor: 0.8,
-                                  style: TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontWeight: FontWeight.w300,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
+                              )
                             ],
                           ),
                         ),
@@ -295,18 +324,69 @@ class PlateletContent extends StatelessWidget {
                                         bottom: BorderSide(
                                   color: Color(0xFFFFBF05).withOpacity(.10),
                                 ))),
-                                child: Text(
-                                  '3. Wheatgrass:',
-                                  textAlign: TextAlign.center,
-                                  textScaleFactor: 1.0,
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset('assets/images/drop1.png'),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          'aa',
+                                          textAlign: TextAlign.justify,
+                                          textScaleFactor: 0.8,
+                                          style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        Text(
+                                          'aa',
+                                          textAlign: TextAlign.justify,
+                                          textScaleFactor: 0.8,
+                                          style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    FadeAnimation(
+                      1.8,
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              offset: Offset(-4, 4),
+                              blurRadius: 10,
+                              color: Color(0xFFFFBF05).withOpacity(.6),
+                            )
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
                               Container(
                                 padding: EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(
@@ -314,18 +394,42 @@ class PlateletContent extends StatelessWidget {
                                         bottom: BorderSide(
                                   color: Color(0xFFFFBF05).withOpacity(.10),
                                 ))),
-                                child: Text(
-                                  'Wheatgrass contains high levels of chlorophyll that is structurally similar to the haemoglobin in our blood. It is extremely beneficial when it comes to boosting platelet count, but has additional benefits of increasing the total quantity of red blood cells and white blood cells in the blood. Freshly made wheatgrass juice can be extremely useful if you are looking for how to increase platelet count during chemotherapy.A low platelet count can be of concern. If you are looking for how to increase platelet count naturally, then try and indulge in these foods now and again. However, if there is a medical reason for the low platelet count, then you may want to speak to a haematologist (blood specialist) regarding getting tested to determine the cause of the problem.',
-                                  textAlign: TextAlign.justify,
-                                  textScaleFactor: 0.8,
-                                  style: TextStyle(
-                                    color: Colors.deepPurple,
-                                    fontWeight: FontWeight.w300,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 18,
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset('assets/images/drop1.png'),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          'aa',
+                                          textAlign: TextAlign.justify,
+                                          textScaleFactor: 0.8,
+                                          style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        Text(
+                                          'aa',
+                                          textAlign: TextAlign.justify,
+                                          textScaleFactor: 0.8,
+                                          style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.w300,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         ),
