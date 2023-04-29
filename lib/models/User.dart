@@ -8,11 +8,11 @@ class User {
   final String userCity;
 
   User(
-      {this.userId,
-      this.userName,
-      this.userPhone,
-      this.userLocation,
-      this.userDP,
-      this.userBlood,
-      this.userCity});
+      {required this.userId,
+      required this.userName,
+      required this.userPhone,
+      required this.userLocation,
+      required this.userDP,
+      required this.userBlood,
+      required this.userCity});
 }

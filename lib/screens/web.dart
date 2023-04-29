@@ -1,6 +1,6 @@
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
-import 'package:donate_platelets/screens/edit_profile.dart';
+import 'package:donate_platelets/screens/donationForm.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -38,12 +38,12 @@ class LalPathLab extends StatelessWidget {
             size: 40,
             color: kAccentColor,
           ),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(EditProfile.routeName);
+              Navigator.of(context).pushNamed(DonationForm.routeName);
             },
             icon: Icon(
               Icons.pan_tool,
@@ -92,12 +92,12 @@ class RedCliffLab extends StatelessWidget {
             size: 40,
             color: kAccentColor,
           ),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(EditProfile.routeName);
+              Navigator.of(context).pushNamed(DonationForm.routeName);
             },
             icon: Icon(
               Icons.pan_tool,
@@ -146,12 +146,12 @@ class Apollo extends StatelessWidget {
             size: 40,
             color: kAccentColor,
           ),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(EditProfile.routeName);
+              Navigator.of(context).pushNamed(DonationForm.routeName);
             },
             icon: Icon(
               Icons.pan_tool,
@@ -201,12 +201,12 @@ class MaxLab extends StatelessWidget {
             size: 40,
             color: kAccentColor,
           ),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(EditProfile.routeName);
+              Navigator.of(context).pushNamed(DonationForm.routeName);
             },
             icon: Icon(
               Icons.pan_tool,

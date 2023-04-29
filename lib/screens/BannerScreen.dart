@@ -82,10 +82,9 @@ class BannerScreen extends StatelessWidget {
                     ButtonTheme(
                       minWidth: 100.0,
                       height: 40.0,
-                      child: RaisedButton(
+                      child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed(HomeScreen.routeName);
+                          Navigator.pushReplacementNamed(context, '/home');
                         },
                         child: Text(
                           'Got it',
@@ -95,10 +94,10 @@ class BannerScreen extends StatelessWidget {
                               fontSize: 20.0,
                               fontFamily: 'Poppins'),
                         ),
-                        color: kBannerBasicColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7.0),
-                        ),
+                        // color: kBannerBasicColor,
+                        // shape: RoundedRectangleBorder(
+                        //   borderRadius: BorderRadius.circular(7.0),
+                        // ),
                       ),
                     )
                   ],

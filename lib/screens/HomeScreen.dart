@@ -1,33 +1,38 @@
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
-import 'package:donate_platelets/constants/text_style_constants.dart';
-import 'package:donate_platelets/models/User.dart';
 import 'package:donate_platelets/providers/information.dart';
 import 'package:donate_platelets/providers/users.dart';
+import 'package:donate_platelets/screens/card.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
 import 'package:donate_platelets/widgets/info_card_widget.dart';
 import 'package:donate_platelets/widgets/users_card_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
-  String val;
-  HomeScreen(this.val);
-
-  static const routeName = '/home';
+  const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }
+
+// class HomeScreen extends StatefulWidget {
+//   @override
+//   _HomeScreenState createState() => _HomeScreenState();
+// }
+
+// class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final information = Provider.of<Information>(context).infoList;
-    final users = Provider.of<Users>(context).userList;
     final GlobalKey<ScaffoldState> _scaffoldKey =
         new GlobalKey<ScaffoldState>();
 
@@ -52,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             size: 40,
             color: kAccentColor,
           ),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: <Widget>[
           IconButton(
@@ -119,30 +124,31 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            child: FadeAnimation(
-              2.0,
-              GridView.builder(
-                padding: const EdgeInsets.all(20.0),
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 1.5 / 2,
-                  crossAxisSpacing: 20.0,
-                  mainAxisSpacing: 25.0,
-                ),
-                itemCount: users.length,
-                itemBuilder: (ctx, index) => UsersCard(
-                  userDP: users[index].userDP,
-                  userId: users[index].userId,
-                  userLocation: users[index].userLocation,
-                  userName: users[index].userName,
-                  userPhone: users[index].userPhone,
-                  userBlood: users[index].userBlood,
-                  userCity: users[index].userCity,
-                ),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-              ),
-            ),
+            child: FadeAnimation(2.0, Cards()),
+            // child: FadeAnimation(
+            //   2.0,
+            //   GridView.builder(
+            //     padding: const EdgeInsets.all(20.0),
+            //     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            //       maxCrossAxisExtent: 200,
+            //       childAspectRatio: 1.5 / 2,
+            //       crossAxisSpacing: 20.0,
+            //       mainAxisSpacing: 25.0,
+            //     ),
+            //     itemCount: users.length,
+            //     itemBuilder: (ctx, index) => UsersCard(
+            //       userDP: users[index].userDP,
+            //       userId: users[index].userId,
+            //       userLocation: users[index].userLocation,
+            //       userName: users[index].userName,
+            //       userPhone: users[index].userPhone,
+            //       userBlood: users[index].userBlood,
+            //       userCity: users[index].userCity,
+            //     ),
+            //     scrollDirection: Axis.vertical,
+            //     shrinkWrap: true,
+            //   ),
+            // ),
           ),
         ],
       ),

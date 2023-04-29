@@ -1,25 +1,29 @@
-import 'dart:ffi';
-
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
+import 'package:donate_platelets/dbHelper/mondodb.dart';
+import 'package:donate_platelets/models/mongoDbDonerModel.dart';
 import 'package:donate_platelets/screens/HomeScreen.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mongo_dart/mongo_dart.dart' as M;
 
-class EditProfile extends StatelessWidget {
+class DonationForm extends StatefulWidget {
   static const routeName = '/edit';
 
   @override
+  State<DonationForm> createState() => _DonationFormState();
+}
+
+class _DonationFormState extends State<DonationForm> {
+  var nameCtr = new TextEditingController();
+  var bloodCtr = new TextEditingController();
+  var phoneCtr = new TextEditingController();
+  var addressCtr = new TextEditingController();
+  var cityCtr = new TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    // final nm = TextEditingController();
-
     String name;
-
-    // void _submit() {}
-
-    //  func1(
-    //  ){}
     final GlobalKey<ScaffoldState> _scaffoldKey =
         new GlobalKey<ScaffoldState>();
 
@@ -45,7 +49,7 @@ class EditProfile extends StatelessWidget {
             size: 40,
             color: kAccentColor,
           ),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: <Widget>[
           IconButton(
@@ -100,8 +104,7 @@ class EditProfile extends StatelessWidget {
                                 ),
                               ),
                               child: TextField(
-                                // controller: nm,
-                                // onSubmitted: (_) => _submit(),
+                                controller: nameCtr,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Name",
@@ -122,6 +125,7 @@ class EditProfile extends StatelessWidget {
                                 ),
                               ),
                               child: TextField(
+                                controller: bloodCtr,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Blood Group",
@@ -142,6 +146,7 @@ class EditProfile extends StatelessWidget {
                                 ),
                               ),
                               child: TextField(
+                                controller: phoneCtr,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Phone number",
@@ -155,9 +160,24 @@ class EditProfile extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.all(8.0),
                               child: TextField(
+                                controller: addressCtr,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: "Location",
+                                  hintText: "Address",
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey[400],
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              child: TextField(
+                                controller: cityCtr,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "City",
                                   hintStyle: TextStyle(
                                     color: Colors.grey[400],
                                     fontFamily: 'Poppins',
@@ -174,24 +194,6 @@ class EditProfile extends StatelessWidget {
                     ),
                     FadeAnimation(
                       2,
-                      // Container(
-                      //   height: 50,
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(10),
-                      //     color: Theme.of(context).primaryColor,
-                      //   ),
-                      //   child: Center(
-                      //     child: Text(
-                      //       "Save",
-                      //       style: TextStyle(
-                      //         color: Colors.white,
-                      //         fontWeight: FontWeight.bold,
-                      //         fontSize: 20,
-                      //         fontFamily: 'Poppins',
-                      //       ),
-                      //     ),
-                      //   ),
-                      // )
                       MaterialButton(
                         minWidth: 300,
                         child: Text(
@@ -204,8 +206,8 @@ class EditProfile extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HomeScreen(name)));
+                          _insertData(nameCtr.text, bloodCtr.text,
+                              phoneCtr.text, addressCtr.text, cityCtr.text);
                         },
                         color: Theme.of(context).primaryColor,
                       ),
@@ -221,5 +223,30 @@ class EditProfile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _insertData(String name, String bloodGroup, String phone,
+      String address, String city) async {
+    var _id = M.ObjectId();
+    final data = MongoDbDonerModel(
+        id: _id,
+        name: name,
+        bloodGroup: bloodGroup,
+        phone: phone,
+        address: address,
+        city: city);
+    var result = await MongoDatabase.insert(data);
+    print(result);
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Inserted id " + _id.$oid)));
+    _clearAll();
+  }
+
+  void _clearAll() {
+    nameCtr.text = "";
+    bloodCtr.text = "";
+    phoneCtr.text = "";
+    addressCtr.text = "";
+    cityCtr.text = "";
   }
 }

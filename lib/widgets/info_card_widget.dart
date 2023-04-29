@@ -7,7 +7,8 @@ class InfoCardWidget extends StatefulWidget {
   final String message;
   final Color color;
 
-  InfoCardWidget({this.infoId, this.message, this.color});
+  InfoCardWidget(
+      {required this.infoId, required this.message, required this.color});
 
   @override
   _InfoCardWidgetState createState() => _InfoCardWidgetState();

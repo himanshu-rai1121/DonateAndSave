@@ -1,7 +1,7 @@
 import 'package:donate_platelets/screens/HomeScreen.dart';
-import 'package:donate_platelets/screens/edit_profile.dart';
+import 'package:donate_platelets/screens/donationForm.dart';
 import 'package:donate_platelets/screens/platelet_content_screen.dart';
-import 'package:donate_platelets/screens/story_screen.dart';
+import 'package:donate_platelets/screens/storyForm.dart';
 import 'package:donate_platelets/screens/platelet_content_screen.dart';
 import 'package:donate_platelets/screens/webview.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,12 @@ class CustomDrawer extends StatelessWidget {
             ),
             title: Text('Home'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+              Navigator.of(context).pop();
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/home',
+                (route) => false, // remove all other routes
+              );
             },
           ),
           ListTile(
@@ -50,7 +55,8 @@ class CustomDrawer extends StatelessWidget {
             ),
             title: Text('Be a donor'),
             onTap: () {
-              Navigator.of(context).pushNamed(EditProfile.routeName);
+              Navigator.of(context).pop();
+              Navigator.pushNamed(context, '/donation');
             },
           ),
           ListTile(
@@ -60,7 +66,8 @@ class CustomDrawer extends StatelessWidget {
             ),
             title: Text('Share your story'),
             onTap: () {
-              Navigator.of(context).pushNamed(StoryScreen.routeName);
+              Navigator.of(context).pop();
+              Navigator.pushNamed(context, '/story');
             },
           ),
           ListTile(
@@ -71,8 +78,8 @@ class CustomDrawer extends StatelessWidget {
             title: Text('Ways to Increase Platelet'),
             // onTap: () {},
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => PlateletContent()));
+              Navigator.of(context).pop();
+              Navigator.pushNamed(context, '/plateletContent');
             },
           ),
           ListTile(
@@ -83,8 +90,8 @@ class CustomDrawer extends StatelessWidget {
             title: Text('NearBy Labs'),
             // onTap: () {},
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => WebView()));
+              Navigator.of(context).pop();
+              Navigator.pushNamed(context, '/labs');
             },
           ),
         ],

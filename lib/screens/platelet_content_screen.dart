@@ -1,6 +1,6 @@
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
-import 'package:donate_platelets/screens/edit_profile.dart';
+import 'package:donate_platelets/screens/donationForm.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -39,12 +39,12 @@ class PlateletContent extends StatelessWidget {
             size: 40,
             color: kAccentColor,
           ),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(EditProfile.routeName);
+              Navigator.of(context).pushNamed(DonationForm.routeName);
             },
             icon: Icon(
               Icons.pan_tool,
@@ -354,8 +354,8 @@ class PlateletContent extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeScreen(name)));
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) => HomeScreen()));
                           },
                           color: Theme.of(context).primaryColor,
                         ),

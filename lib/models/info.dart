@@ -5,9 +5,5 @@ class Info {
   final String message;
   final Color color;
 
-  Info({
-    @required this.infoId,
-    @required this.message,
-    @required this.color
-  });
+  Info({required this.infoId, required this.message, required this.color});
 }

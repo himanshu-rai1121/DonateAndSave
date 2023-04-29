@@ -1,22 +1,17 @@
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
-import 'package:donate_platelets/screens/edit_profile.dart';
+import 'package:donate_platelets/screens/donationForm.dart';
 import 'package:donate_platelets/screens/web.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
 import 'package:flutter/material.dart';
 
-import 'HomeScreen.dart';
-
 class WebView extends StatelessWidget {
-  // static const routeName = '/stor';
-  const WebView({key}) : super(key: key);
+  const WebView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey =
         new GlobalKey<ScaffoldState>();
-
-    String name;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -40,12 +35,12 @@ class WebView extends StatelessWidget {
             size: 40,
             color: kAccentColor,
           ),
-          onPressed: () => _scaffoldKey.currentState.openDrawer(),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(EditProfile.routeName);
+              Navigator.of(context).pushNamed(DonationForm.routeName);
             },
             icon: Icon(
               Icons.pan_tool,
@@ -502,8 +497,8 @@ class WebView extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => HomeScreen(name)));
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) => HomeScreen(name)));
                           },
                           color: Theme.of(context).primaryColor,
                         ),
