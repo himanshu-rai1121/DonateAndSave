@@ -146,6 +146,7 @@ class _DonationFormState extends State<DonationForm> {
                                 ),
                               ),
                               child: TextField(
+                                keyboardType: TextInputType.number,
                                 controller: phoneCtr,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
@@ -206,6 +207,8 @@ class _DonationFormState extends State<DonationForm> {
                           ),
                         ),
                         onPressed: () {
+                          FocusScope.of(context)
+                              .unfocus(); // on press submit button push down the keyboard
                           _insertData(nameCtr.text, bloodCtr.text,
                               phoneCtr.text, addressCtr.text, cityCtr.text);
                         },
@@ -237,8 +240,33 @@ class _DonationFormState extends State<DonationForm> {
         city: city);
     var result = await MongoDatabase.insert(data);
     print(result);
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Inserted id " + _id.$oid)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            children: [
+              Icon(Icons.check_circle_outline, color: Colors.green),
+              SizedBox(width: 10),
+              Expanded(child: Text("Inserted id " + _id.$oid)),
+            ],
+          ),
+        ),
+        backgroundColor: Colors.grey[900],
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(seconds: 3),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        action: SnackBarAction(
+          label: "Undo",
+          textColor: Colors.white,
+          onPressed: () {
+            // Delete data from database
+          },
+        ),
+      ),
+    );
     _clearAll();
   }
 
