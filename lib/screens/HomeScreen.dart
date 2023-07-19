@@ -2,7 +2,7 @@ import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
 import 'package:donate_platelets/providers/information.dart';
 import 'package:donate_platelets/providers/users.dart';
-import 'package:donate_platelets/screens/card.dart';
+import 'package:donate_platelets/widgets/card.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
 import 'package:donate_platelets/widgets/info_card_widget.dart';
 import 'package:donate_platelets/widgets/users_card_widget.dart';
