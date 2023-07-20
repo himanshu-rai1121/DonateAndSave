@@ -20,6 +20,8 @@ class _FindDonorState extends State<FindDonor> {
   String relation = "";
   List<String> bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   List<String> relationsList = ["Family", "friends", "Other"];
+  int? selectedAge = 21;
+  List<int> ages = List.generate(100, (index) => index + 1);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,8 @@ class _FindDonorState extends State<FindDonor> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(DonationForm.routeName);
+              Navigator.pushNamed(context, '/donation');
+              // Navigator.pushNamed(context, '/signUp');
             },
             icon: Icon(
               Icons.pan_tool,
@@ -62,10 +65,7 @@ class _FindDonorState extends State<FindDonor> {
           ),
         ],
       ),
-      body:
-          // Cards(),
-
-          Container(
+      body: Container(
         margin: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,12 +167,34 @@ class _FindDonorState extends State<FindDonor> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                findButton(gender, selectedBlood, relation, "18", context),
-              ],
+            Center(
+              child: Container(
+                margin: EdgeInsets.all(15),
+                padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                height: 50,
+                width: 100,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(15)),
+                    border: Border.all(width: 5, color: kPrimaryColor)),
+                child: DropdownButton<int>(
+                  value: selectedAge,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedAge = value;
+                    });
+                  },
+                  items: ages.map((int age) {
+                    return DropdownMenuItem<int>(
+                      value: age,
+                      child: Text(age.toString()),
+                    );
+                  }).toList(),
+                ),
+              ),
             ),
+            Center(
+                child: findButton(gender, selectedBlood, relation,
+                    selectedAge.toString(), context)),
           ],
         ),
       ),
@@ -213,22 +235,23 @@ Widget findButton(
   return GestureDetector(
     onTap: () {
       print(bloodGroup + " " + gender + " " + relation + " " + Age);
-      Navigator.pushNamed(context, '/donor');
+      Navigator.pushNamed(context, '/signUp');
     },
     child: Container(
+      margin: EdgeInsets.all(10),
       padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-      width: 300,
+      width: MediaQuery.of(context).size.width * 5 / 6,
       height: 60,
       decoration: BoxDecoration(
           color: kPrimaryColor,
           borderRadius: const BorderRadius.all(Radius.circular(15)),
           border: Border.all(width: 5, color: kPrimaryColor)),
-      child: Align(
+      child: const Align(
         alignment: Alignment.center,
-        child: const Text(
-          "Find",
+        child: Text(
+          "Search",
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 20,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
           ),
