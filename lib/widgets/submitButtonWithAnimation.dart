@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-class SubmitButton extends StatefulWidget {
+class CustomMainButton extends StatefulWidget {
   final VoidCallback onPressed;
+  final String buttonName;
 
-  SubmitButton({required this.onPressed});
+  CustomMainButton({required this.onPressed, required this.buttonName});
 
   @override
-  _SubmitButtonState createState() => _SubmitButtonState();
+  _CustomMainButtonState createState() => _CustomMainButtonState();
 }
 
-class _SubmitButtonState extends State<SubmitButton>
+class _CustomMainButtonState extends State<CustomMainButton>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -19,9 +20,11 @@ class _SubmitButtonState extends State<SubmitButton>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration:
+          Duration(milliseconds: 100), // Faster animation: 100 milliseconds
     );
-    _animation = Tween<double>(begin: 1.0, end: 0.85)
+    _animation = Tween<double>(
+            begin: 1.0, end: 0.95) // Decreased depth: from 0.85 to 0.95
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
@@ -31,19 +34,23 @@ class _SubmitButtonState extends State<SubmitButton>
     super.dispose();
   }
 
+  void _handleTap() {
+    _controller.forward().then((value) => _controller.reverse());
+    widget.onPressed();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) => _controller.forward(),
-      onTapUp: (_) => _controller.reverse(),
-      onTapCancel: () => _controller.reverse(),
-      onTap: widget.onPressed,
+      onTap: _handleTap,
+      behavior: HitTestBehavior.translucent,
       child: ScaleTransition(
         scale: _animation,
         child: Container(
           height: 50,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius:
+                BorderRadius.circular(25), // Decreased depth: from 30 to 25
             gradient: LinearGradient(
               colors: [
                 Colors.orangeAccent,
@@ -55,7 +62,7 @@ class _SubmitButtonState extends State<SubmitButton>
           ),
           child: Center(
             child: Text(
-              'Register',
+              widget.buttonName,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

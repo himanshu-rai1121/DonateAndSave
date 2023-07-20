@@ -119,13 +119,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
 
                 //  custom submit button Created
-                SubmitButton(onPressed: () {
-                  FocusScope.of(context)
-                      .unfocus(); // on press submit button push down the keyboard
-                  // _insertData(
-                  // name.text, feedback.text, currLang.text, futureLang.text);
-                  // Navigator.pop(context);
-                })
+                CustomMainButton(
+                  onPressed: () {
+                    FocusScope.of(context)
+                        .unfocus(); // on press submit button push down the keyboard
+                    // _insertData(
+                    // name.text, feedback.text, currLang.text, futureLang.text);
+                    // Navigator.pop(context);
+                  },
+                  buttonName: 'Register',
+                )
               ],
             ),
           ),

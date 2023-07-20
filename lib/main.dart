@@ -8,6 +8,7 @@ import 'package:donate_platelets/screens/donor.dart';
 import 'package:donate_platelets/screens/findDonor.dart';
 import 'package:donate_platelets/screens/history.dart';
 import 'package:donate_platelets/screens/platelet_content_screen.dart';
+import 'package:donate_platelets/screens/requests.dart';
 import 'package:donate_platelets/screens/signUp.dart';
 import 'package:donate_platelets/screens/storyForm.dart';
 import 'package:donate_platelets/screens/webview.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
             '/findDonor': (context) => FindDonor(),
             "/donor": (context) => Donor(),
             '/signUp': (context) => SignUpPage(),
+            '/requests': (context) => Requests(),
           },
           home: BannerScreen(),
         ));

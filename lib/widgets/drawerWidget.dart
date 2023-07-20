@@ -118,6 +118,18 @@ class CustomDrawer extends StatelessWidget {
               Navigator.pushNamed(context, '/findDonor');
             },
           ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.solidHospital,
+              color: Colors.pinkAccent.shade400,
+            ),
+            title: Text('Requests'),
+            // onTap: () {},
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.pushNamed(context, '/requests');
+            },
+          ),
         ],
       ),
     );
