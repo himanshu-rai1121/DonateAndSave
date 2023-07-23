@@ -7,6 +7,7 @@ import 'package:donate_platelets/screens/donationForm.dart';
 import 'package:donate_platelets/screens/donor.dart';
 import 'package:donate_platelets/screens/findDonor.dart';
 import 'package:donate_platelets/screens/history.dart';
+import 'package:donate_platelets/screens/loginPage.dart';
 import 'package:donate_platelets/screens/platelet_content_screen.dart';
 import 'package:donate_platelets/screens/requests.dart';
 import 'package:donate_platelets/screens/signUp.dart';
@@ -20,7 +21,7 @@ import 'dbHelper/mondodb.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await MongoDatabase.connect();
+  await MongoDatabase.connect();
   runApp(MyApp());
 }
 
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
             "/donor": (context) => Donor(),
             '/signUp': (context) => SignUpPage(),
             '/requests': (context) => Requests(),
+            '/login': (context) => LoginPage(),
           },
           home: BannerScreen(),
         ));

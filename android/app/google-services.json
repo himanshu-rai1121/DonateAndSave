@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1095175702216",
+    "project_id": "donateandsave-6b35f",
+    "storage_bucket": "donateandsave-6b35f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095175702216:android:6771b191dd377f3f8587fd",
+        "android_client_info": {
+          "package_name": "com.example.donate_platelets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095175702216-g32v8kidefjpouk4jcilgks39r6bbuf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB41Uu7JdR1cKgmIgruvt-VP_5OSkID7zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095175702216-g32v8kidefjpouk4jcilgks39r6bbuf2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
