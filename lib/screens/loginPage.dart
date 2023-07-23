@@ -1,4 +1,7 @@
+import "package:cloud_firestore/cloud_firestore.dart";
 import "package:donate_platelets/constants/color_constants.dart";
+import "package:firebase_auth/firebase_auth.dart";
+import "package:firebase_core/firebase_core.dart";
 import "package:flutter/material.dart";
 
 import "../widgets/submitButtonWithAnimation.dart";
@@ -183,10 +186,19 @@ class _LoginState extends State<Login> {
                       _mailError = "Please enter valid Email address";
                     });
                   } else {
-                    setState(() {
-                      _mailError = null;
-                    });
+                    _mailError = null;
                     // validate and submit
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: email.text, password: pass.text)
+                        .then((value) {
+                      Navigator.pushNamed(context, "/home");
+                    }).onError((error, stackTrace) {
+                      print(error.toString());
+                      setState(() {
+                        _mailError = error.toString();
+                      });
+                    });
                   }
                 },
                 buttonName: 'Login'),
@@ -415,11 +427,8 @@ class _SignUpState extends State<SignUp> {
                             _mailError = "Please enter valid Email address";
                           });
                         } else {
-                          setState(() {
-                            _mailError = null;
-                            isEmailCorrect = true;
-                          });
-                          // validate and submit
+                          _mailError = null;
+                          isEmailCorrect = true;
                         }
                         if (b != c) {
                           setState(() {
@@ -432,6 +441,30 @@ class _SignUpState extends State<SignUp> {
                         // now go to the next page if both email and password varification is completed
                         if (isEmailCorrect && isPassCorrect) {
                           // write further
+                          FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                                  email: email.text, password: pass.text)
+                              .then((value) {
+                            // print(value);
+                            print("account created");
+                            Navigator.pushNamed(context, '/home');
+
+                            // Store the user name, email and user image in firestore
+                            FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(value.user?.uid)
+                                .set({
+                              'username': name.text,
+                              'uid': value.user?.uid,
+                              'profilePhoto': value.user?.photoURL,
+                            });
+                          }).onError((error, stackTrace) {
+                            print("Error ${error.toString()}");
+                            setState(() {
+                              _mailError = "${error.toString()}";
+                              _passError = error.toString();
+                            });
+                          });
                         }
                       },
                       buttonName: 'Signup'),

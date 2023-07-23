@@ -13,6 +13,8 @@ import 'package:donate_platelets/screens/requests.dart';
 import 'package:donate_platelets/screens/signUp.dart';
 import 'package:donate_platelets/screens/storyForm.dart';
 import 'package:donate_platelets/screens/webview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +23,7 @@ import 'dbHelper/mondodb.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await MongoDatabase.connect();
   runApp(MyApp());
 }
@@ -41,7 +44,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routes: {
             '/home': (context) => HomeScreen(),
-            '/banner': (context) => BannerScreen(),
+            // '/banner': (context) => BannerScreen(),
             '/donation': (context) => DonationForm(),
             '/story': (context) => StoryScreen(),
             '/plateletContent': (context) => PlateletContent(),
@@ -53,7 +56,23 @@ class MyApp extends StatelessWidget {
             '/requests': (context) => Requests(),
             '/login': (context) => LoginPage(),
           },
-          home: BannerScreen(),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              if (snapshot.hasData) {
+                return BannerScreen(
+                  isAlreadyLogin: true,
+                );
+              }
+              return BannerScreen(isAlreadyLogin: false);
+            },
+          ),
         ));
   }
 }

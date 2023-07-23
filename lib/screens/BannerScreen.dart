@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/text_style_constants.dart';
 import 'package:donate_platelets/screens/HomeScreen.dart';
+import 'package:donate_platelets/screens/loginPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
@@ -11,7 +13,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../dbHelper/mondodb.dart';
 
 class BannerScreen extends StatelessWidget {
-  static const routeName = '/banner';
+  bool isAlreadyLogin;
+
+  BannerScreen({required this.isAlreadyLogin});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +92,11 @@ class BannerScreen extends StatelessWidget {
                       height: 40.0,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/home');
+                          if (isAlreadyLogin) {
+                            Navigator.pushReplacementNamed(context, '/home');
+                          } else {
+                            Navigator.pushReplacementNamed(context, '/login');
+                          }
                         },
                         child: Text(
                           'Got it',

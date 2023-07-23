@@ -4,6 +4,7 @@ import 'package:donate_platelets/screens/platelet_content_screen.dart';
 import 'package:donate_platelets/screens/storyForm.dart';
 import 'package:donate_platelets/screens/platelet_content_screen.dart';
 import 'package:donate_platelets/screens/webview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -140,6 +141,24 @@ class CustomDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.pushNamed(context, '/login');
+            },
+          ),
+          ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.solidHospital,
+              color: Colors.pinkAccent.shade400,
+            ),
+            title: Text('Logout'),
+            // onTap: () {},
+            onTap: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                print("logOut succesfully");
+                // Navigator.of(context).pop();
+                // Navigator.pushNamed(context, '/login');
+                // Navigator.popUntil(context, (route) => route.isFirst);
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/login', (route) => false);
+              });
             },
           ),
         ],
