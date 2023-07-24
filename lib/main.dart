@@ -20,10 +20,12 @@ import 'package:donate_platelets/constants/color_constants.dart';
 import 'package:provider/provider.dart';
 
 import 'dbHelper/mondodb.dart';
+import 'mongoDB/dbHelper/mongodb.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // await MongoDatabase.connect();
   await MongoDatabase.connect();
   runApp(MyApp());
 }

@@ -1,10 +1,15 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:donate_platelets/constants/color_constants.dart";
+import "package:donate_platelets/mongoDB/Models/mongoDbUserInfoModel.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter/material.dart";
+import "package:shared_preferences/shared_preferences.dart";
 
+import "../mongoDB/dbHelper/mongodb.dart";
+import "../widgets/snackbar.dart";
 import "../widgets/submitButtonWithAnimation.dart";
+import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -117,8 +122,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   var _mailError = null;
-  var email = new TextEditingController();
-  var pass = new TextEditingController();
+  var emailController = new TextEditingController();
+  var passController = new TextEditingController();
   bool _isPasswordNotVisible = true;
 
   @override
@@ -132,7 +137,7 @@ class _LoginState extends State<Login> {
           children: [
             TextFormField(
               keyboardType: TextInputType.emailAddress,
-              controller: email,
+              controller: emailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Enter your email',
@@ -141,7 +146,7 @@ class _LoginState extends State<Login> {
             ),
             TextFormField(
               keyboardType: TextInputType.visiblePassword,
-              controller: pass,
+              controller: passController,
               obscureText: _isPasswordNotVisible,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -178,7 +183,7 @@ class _LoginState extends State<Login> {
             ),
             CustomMainButton(
                 onPressed: () {
-                  var a = email.text;
+                  var a = emailController.text;
                   if (a == null ||
                       !a.contains('@') ||
                       a.lastIndexOf('.') <= a.lastIndexOf('@') + 1) {
@@ -190,8 +195,17 @@ class _LoginState extends State<Login> {
                     // validate and submit
                     FirebaseAuth.instance
                         .signInWithEmailAndPassword(
-                            email: email.text, password: pass.text)
-                        .then((value) {
+                            email: emailController.text,
+                            password: passController.text)
+                        .then((value) async {
+                      // Save the userId to shared preferences
+                      String userId = value.user!.uid;
+                      // Save the userId to shared preferences
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.setString('userId', userId);
+
+                      // FirebaseUserInfo.setid(value.user!.email!);
                       Navigator.pushNamed(context, "/home");
                     }).onError((error, stackTrace) {
                       print(error.toString());
@@ -284,6 +298,26 @@ class _LoginState extends State<Login> {
   }
 }
 
+Future<String?> getNameFromFirestore(String userId) async {
+  try {
+    DocumentSnapshot documentSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(userId).get();
+
+    if (documentSnapshot.exists) {
+      // The document with the given userId exists
+      // Access the 'name' field and return its value
+      return documentSnapshot.get('name') as String?;
+    } else {
+      // The document with the given userId does not exist
+      return null;
+    }
+  } catch (e) {
+    // Handle any errors that might occur during the process
+    print('Error getting name from Firestore: $e');
+    return null;
+  }
+}
+
 Widget signinMethodButton(
     {required String imageIconName,
     required String buttonName,
@@ -330,10 +364,10 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   var _mailError = null;
   var _passError = null;
-  var email = new TextEditingController();
-  var pass = new TextEditingController();
-  var confPass = new TextEditingController();
-  var name = new TextEditingController();
+  var emailController = new TextEditingController();
+  var passController = new TextEditingController();
+  var confPassController = new TextEditingController();
+  var nameController = new TextEditingController();
 
   bool _isPasswordNotVisible = true;
 
@@ -348,7 +382,7 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   TextFormField(
                     keyboardType: TextInputType.name,
-                    controller: name,
+                    controller: nameController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Enter your Name',
@@ -356,7 +390,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
-                    controller: email,
+                    controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Enter your email',
@@ -365,7 +399,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   TextFormField(
                     keyboardType: TextInputType.visiblePassword,
-                    controller: pass,
+                    controller: passController,
                     obscureText: _isPasswordNotVisible,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -388,7 +422,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   TextFormField(
                     keyboardType: TextInputType.visiblePassword,
-                    controller: confPass,
+                    controller: confPassController,
                     obscureText: _isPasswordNotVisible,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -415,9 +449,9 @@ class _SignUpState extends State<SignUp> {
                   ),
                   CustomMainButton(
                       onPressed: () {
-                        var a = email.text;
-                        var b = pass.text;
-                        var c = confPass.text;
+                        var a = emailController.text;
+                        var b = passController.text;
+                        var c = confPassController.text;
                         var isEmailCorrect = false;
                         var isPassCorrect = false;
                         if (a == null ||
@@ -441,10 +475,13 @@ class _SignUpState extends State<SignUp> {
                         // now go to the next page if both email and password varification is completed
                         if (isEmailCorrect && isPassCorrect) {
                           // write further
+
+                          // authenticate and create new user in database
                           FirebaseAuth.instance
                               .createUserWithEmailAndPassword(
-                                  email: email.text, password: pass.text)
-                              .then((value) {
+                                  email: emailController.text,
+                                  password: passController.text)
+                              .then((value) async {
                             // print(value);
                             print("account created");
                             Navigator.pushNamed(context, '/home');
@@ -454,10 +491,24 @@ class _SignUpState extends State<SignUp> {
                                 .collection('users')
                                 .doc(value.user?.uid)
                                 .set({
-                              'username': name.text,
+                              'username': nameController.text,
                               'uid': value.user?.uid,
                               'profilePhoto': value.user?.photoURL,
                             });
+
+                            String userId = value.user!
+                                .uid; // Save the userId to shared preferences
+                            // Save the userId to shared preferences
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString('userId', userId);
+
+                            // insert data in mongo database
+                            insertData(
+                                email: emailController.text,
+                                name: nameController.text,
+                                userId: value.user!.uid,
+                                isVerified: false);
                           }).onError((error, stackTrace) {
                             print("Error ${error.toString()}");
                             setState(() {
@@ -545,4 +596,37 @@ class _SignUpState extends State<SignUp> {
                   )
                 ])));
   }
+
+  Future<void> insertData(
+      {required String userId,
+      required String name,
+      required String email,
+      required bool isVerified}) async {
+    var _id = M.ObjectId(); // it will be used for unique id
+    final data = MongoDbUserInfoModel(
+        id: _id,
+        userId: userId,
+        name: name,
+        email: email,
+        isVerified: isVerified,
+        bloodGroup: "",
+        dob: "",
+        address: "",
+        city: "",
+        location: "",
+        phone: "",
+        age: 0,
+        healthIssue: "");
+    var result = await MongoDatabase.insert(data);
+    customSnackBar(context, _id.$oid);
+    // _cleaarAll();
+  }
+
+  // void _clearAll() {
+  //   setState(() {
+  //     nameController.text = "";
+  //     emailController.text = "";
+
+  //   });
+  // }
 }

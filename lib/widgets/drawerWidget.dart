@@ -7,6 +7,7 @@ import 'package:donate_platelets/screens/webview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -151,18 +152,22 @@ class CustomDrawer extends StatelessWidget {
             title: Text('Logout'),
             // onTap: () {},
             onTap: () {
-              FirebaseAuth.instance.signOut().then((value) {
-                print("logOut succesfully");
-                // Navigator.of(context).pop();
-                // Navigator.pushNamed(context, '/login');
-                // Navigator.popUntil(context, (route) => route.isFirst);
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/login', (route) => false);
-              });
+              _signOut(context);
             },
           ),
         ],
       ),
     );
+  }
+
+  void _signOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut().then((value) async {
+      // Clear the userId from shared preferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.remove('userId');
+      print("logOut succesfully");
+
+      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    });
   }
 }

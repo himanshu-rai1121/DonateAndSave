@@ -54,7 +54,8 @@ class _DonorState extends State<Donor> {
           ),
         ],
       ),
-      body: Cards(),
+      body: Container(),
+      // Cards(),
     );
   }
 }

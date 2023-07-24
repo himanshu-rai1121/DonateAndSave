@@ -1,9 +1,14 @@
+import 'package:donate_platelets/mongoDB/Models/mongoDbUserInfoModel.dart';
 import 'package:flutter/material.dart';
 import 'package:donate_platelets/widgets/submitButtonWithAnimation.dart';
 import 'package:donate_platelets/widgets/textInputBox.dart';
+import 'package:mongo_dart/mongo_dart.dart' as M;
 
 import '../constants/color_constants.dart';
+import '../mongoDB/dbHelper/mongodb.dart';
+import '../sharedPreference/auth_service.dart';
 import '../widgets/drawerWidget.dart';
+import '../widgets/snackbar.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -13,10 +18,26 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  var name = new TextEditingController();
-  var health = new TextEditingController();
-  var age = new TextEditingController();
-  var bloodGroup = new TextEditingController();
+  String? userId = "";
+
+  @override
+  void initState() {
+    super.initState();
+    // Get the user ID when the app starts
+    getUserId();
+  }
+
+  void getUserId() async {
+    String? userId = await AuthService.getUserIdFromSharedPrefs();
+    setState(() {
+      this.userId = userId;
+    });
+  }
+
+  var nameController = new TextEditingController();
+  var healthController = new TextEditingController();
+  var ageController = new TextEditingController();
+  var bloodGroupController = new TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -84,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   labelText: "Full NAME",
                   hintText: 'Enter your full name',
                   icon: Icons.person,
-                  controller: name,
+                  controller: nameController,
                 ),
 
                 const SizedBox(
@@ -93,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 TextInput(
                     hintText: "Age",
                     icon: Icons.date_range,
-                    controller: age,
+                    controller: ageController,
                     labelText: "your age"),
                 const SizedBox(
                   height: 10,
@@ -101,7 +122,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 TextInput(
                     hintText: "Any health issue",
                     icon: Icons.medical_information,
-                    controller: health,
+                    controller: healthController,
                     labelText: "Prevailing Health Condition"),
                 const SizedBox(
                   height: 10,
@@ -109,7 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 TextInput(
                   hintText: "A+, A-, B+, B-, .....",
                   icon: Icons.feedback,
-                  controller: bloodGroup,
+                  controller: bloodGroupController,
                   labelText: "Blood Group",
                   // mnsize: 4,
                   // mxsize: 8,
@@ -123,6 +144,24 @@ class _SignUpPageState extends State<SignUpPage> {
                   onPressed: () {
                     FocusScope.of(context)
                         .unfocus(); // on press submit button push down the keyboard
+                    // print(await AuthService.getUserIdFromSharedPrefs());
+                    print(userId);
+                    print(userId);
+                    print(userId);
+                    print(userId);
+                    _updateStudentName(
+                        userId.toString(),
+                        "",
+                        "",
+                        true,
+                        bloodGroupController.text,
+                        ageController.text,
+                        "",
+                        "",
+                        "",
+                        "",
+                        18,
+                        healthController.text);
                     // _insertData(
                     // name.text, feedback.text, currLang.text, futureLang.text);
                     // Navigator.pop(context);
@@ -135,5 +174,44 @@ class _SignUpPageState extends State<SignUpPage> {
         )),
       ),
     );
+  }
+
+  Future<void> _updateStudentName(
+      String userId,
+      String name,
+      String email,
+      bool isVerified,
+      String bloodGroup,
+      String dob,
+      String address,
+      String city,
+      String location,
+      String phone,
+      int age,
+      String healthIssue) async {
+    final data = MongoDbUserInfoModel(
+        id: M.ObjectId(),
+        userId: userId,
+        name: name,
+        email: email,
+        isVerified: isVerified,
+        bloodGroup: bloodGroup,
+        dob: dob,
+        address: address,
+        city: city,
+        location: location,
+        phone: phone,
+        age: age,
+        healthIssue: healthIssue);
+    var result = await MongoDatabase.update(data);
+    customSnackBar(context, userId);
+    _clearAll();
+  }
+
+  void _clearAll() {
+    nameController.text = "";
+    ageController.text = "";
+    healthController.text = "";
+    bloodGroupController.text = "";
   }
 }

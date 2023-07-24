@@ -238,8 +238,8 @@ class _DonationFormState extends State<DonationForm> {
         phone: phone,
         address: address,
         city: city);
-    var result = await MongoDatabase.insert(data);
-    print(result);
+    // var result = await MongoDatabase.insert(data);
+    // print(result);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Container(

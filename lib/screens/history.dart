@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
@@ -145,6 +146,14 @@ Widget getHistory(String donateOrReceived, BuildContext context) {
             ),
             Text(
               donateOrReceived == "Donated" ? "Donor Id: " : "Receiver Id: ",
+              style: const TextStyle(
+                fontSize: 12,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Text(
+              "hello",
               style: const TextStyle(
                 fontSize: 12,
                 fontFamily: 'Poppins',
