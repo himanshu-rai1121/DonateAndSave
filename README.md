@@ -2,10 +2,10 @@
 
 A new Flutter project.
 
-## Team:-
+<!-- ## Team:-
 1. Himanshu Kumar
 2. Nitish Kumar
-3. Soum Srivastava
+3. Soum Srivastava -->
 
 ## Problem Statement:-
 
@@ -21,7 +21,7 @@ The main solution of this problem is to remove third party  intervention between
 Hence we coming with a revolutionary solution by building our  application 'Donate N Save' which reduces search time of the  platelet, and provides one-to-one interaction between donor  and acceptor.
 The acceptor can directly reach out to donor to get the  platelet at the right time.
 
-## Screen Recording-
+<!-- ## Screen Recording-
 
 
 https://user-images.githubusercontent.com/95352548/200158349-5a4f8b40-6aae-4c1b-9ec2-6507bdcf4b2c.mp4
@@ -42,14 +42,4 @@ https://user-images.githubusercontent.com/95352548/200158349-5a4f8b40-6aae-4c1b-
 
 ![18b6aa34-70af-4395-a13c-7b5365946726](https://user-images.githubusercontent.com/95352548/200157523-02ecf9e5-b99a-4628-b300-207827e06288.jpg)
 ![834912a7-fc4d-4910-816f-37de5ddfa3f3](https://user-images.githubusercontent.com/95352548/200157527-451bea71-2a31-40a9-988f-eafec2292220.jpg)
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ -->

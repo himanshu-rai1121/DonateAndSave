@@ -33,6 +33,7 @@
 
 # MongoDb Credentials
 lib/dbHelper/constants.dart
+lib/MongoDb/dbHelper/constants.dart
 
 # Web related
 lib/generated_plugin_registrant.dart
