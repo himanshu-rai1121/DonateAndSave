@@ -57,4 +57,9 @@ class MongoDatabase {
       print('Error: $e');
     }
   }
+
+  static Future<List<Map<String, dynamic>>> getData() async {
+    final arrData = await userInfoCollection.find().toList();
+    return arrData;
+  }
 }

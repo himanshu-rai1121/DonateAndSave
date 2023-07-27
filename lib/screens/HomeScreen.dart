@@ -124,8 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            // child: FadeAnimation(2.0, Cards()),
-            child: Container(),
+            child: FadeAnimation(2.0, Cards()),
+            // child: Container(),
 
             // child: FadeAnimation(
             //   2.0,
