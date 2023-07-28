@@ -1,3 +1,6 @@
+import 'package:donate_platelets/constants/color_constants.dart';
+import 'package:donate_platelets/mongoDB/Models/mongoDbDynamicDatabaseModel.dart';
+import 'package:donate_platelets/widgets/snackbar.dart';
 import 'package:donate_platelets/widgets/submitButtonWithAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -9,15 +12,46 @@ import '../dbHelper/mondodb.dart';
 import '../models/mongoDbDonerModel.dart';
 import '../mongoDB/Models/mongoDbUserInfoModel.dart';
 import '../mongoDB/dbHelper/mongodb.dart';
+import '../sharedPreference/auth_service.dart';
 import 'users_card_widget.dart';
+import 'package:mongo_dart/mongo_dart.dart' as M;
 
-class Cards extends StatelessWidget {
-  const Cards({super.key});
+class Cards extends StatefulWidget {
+  String bloodGroup;
+  Cards({super.key, required this.bloodGroup});
 
   @override
+  State<Cards> createState() => _CardsState();
+}
+
+class _CardsState extends State<Cards> {
+  String? currUserId = "";
+
+  @override
+  void initState() {
+    super.initState();
+    // Get the user ID when the app starts
+    getUserId();
+  }
+
+  void getUserId() async {
+    String? currUserId = await AuthService.getUserIdFromSharedPrefs();
+    setState(() {
+      this.currUserId = currUserId;
+    });
+  }
+
+  bool isRequested = false;
+  @override
   Widget build(BuildContext context) {
+    void Requested() {
+      setState(() {
+        isRequested = true;
+      });
+    }
+
     return FutureBuilder(
-        future: MongoDatabase.getData(),
+        future: MongoDatabase.getDonorData(widget.bloodGroup),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -39,7 +73,8 @@ class Cards extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return displayCard(
                         MongoDbUserInfoModel.fromJson(snapshot.data[index]),
-                        context);
+                        context,
+                        Requested);
                   }
                   // scrollDirection: Axis.vertical,
                   // shrinkWrap: true,
@@ -53,7 +88,8 @@ class Cards extends StatelessWidget {
         });
   }
 
-  Widget displayCard(MongoDbUserInfoModel data, BuildContext context) {
+  Widget displayCard(
+      MongoDbUserInfoModel data, BuildContext context, Function Requested) {
     // print(data.bloodGroup);
     return GestureDetector(
         child: Container(
@@ -201,8 +237,23 @@ class Cards extends StatelessWidget {
                   Container(
                       height: 35,
                       width: MediaQuery.of(context).size.width / 2.5,
-                      child: CustomMainButton(
-                          onPressed: () {}, buttonName: "Request"))
+                      child: isRequested
+                          ? const Text(
+                              "Requested",
+                              // data.city.toString(),
+                              style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: 18,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                          : CustomMainButton(
+                              onPressed: () {
+                                _insertDynamicData(data);
+                                Requested();
+                              },
+                              buttonName: "Request"))
                 ],
               ),
             ),
@@ -210,5 +261,20 @@ class Cards extends StatelessWidget {
         ],
       ),
     ));
+  }
+
+  Future<void> _insertDynamicData(MongoDbUserInfoModel data) async {
+    var _id = M.ObjectId();
+    final tempData = MongoDbDynamicDatabaseModel(
+        id: _id,
+        requesterId: currUserId.toString(),
+        donorId: data.userId,
+        quantity: 1.0,
+        location: "Delhi",
+        date: '28/07/2023',
+        status: 'Active');
+    var result = MongoDatabase.insertIntoDynamic(tempData);
+    customSnackBar(context, result.toString());
+    customSnackBar(context, _id.$oid);
   }
 }

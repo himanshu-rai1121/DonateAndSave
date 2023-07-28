@@ -124,33 +124,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            child: FadeAnimation(2.0, Cards()),
-            // child: Container(),
-
-            // child: FadeAnimation(
-            //   2.0,
-            //   GridView.builder(
-            //     padding: const EdgeInsets.all(20.0),
-            //     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            //       maxCrossAxisExtent: 200,
-            //       childAspectRatio: 1.5 / 2,
-            //       crossAxisSpacing: 20.0,
-            //       mainAxisSpacing: 25.0,
-            //     ),
-            //     itemCount: users.length,
-            //     itemBuilder: (ctx, index) => UsersCard(
-            //       userDP: users[index].userDP,
-            //       userId: users[index].userId,
-            //       userLocation: users[index].userLocation,
-            //       userName: users[index].userName,
-            //       userPhone: users[index].userPhone,
-            //       userBlood: users[index].userBlood,
-            //       userCity: users[index].userCity,
-            //     ),
-            //     scrollDirection: Axis.vertical,
-            //     shrinkWrap: true,
-            //   ),
-            // ),
+            child: FadeAnimation(
+                2.0,
+                Cards(
+                  bloodGroup: 'A+',
+                )),
           ),
         ],
       ),

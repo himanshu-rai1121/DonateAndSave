@@ -1,11 +1,14 @@
 import 'dart:ffi';
 
+import 'package:donate_platelets/screens/viewDonorList.dart';
 import 'package:donate_platelets/widgets/card.dart';
 import 'package:flutter/material.dart';
 
 import 'package:donate_platelets/constants/color_constants.dart';
 import 'package:donate_platelets/screens/donationForm.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
+
+import '../sharedPreference/auth_service.dart';
 
 class FindDonor extends StatefulWidget {
   const FindDonor({super.key});
@@ -235,7 +238,13 @@ Widget findButton(
   return GestureDetector(
     onTap: () {
       print(bloodGroup + " " + gender + " " + relation + " " + Age);
-      Navigator.pushNamed(context, '/signUp');
+      // Navigator.pushNamed(context, '/viewDonorList');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ViewDonorList(
+                    bloodGroup: bloodGroup,
+                  )));
     },
     child: Container(
       margin: EdgeInsets.all(10),
