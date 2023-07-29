@@ -318,65 +318,65 @@ class _PrintRequestCardState extends State<PrintRequestCard> {
   }
 }
 
-Widget printRequestCard(
-    MongoDbDynamicDatabaseModel data, BuildContext context, String status) {
-  return Container(
-      margin: const EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
-      // height: 200,
-      decoration: BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              offset: Offset(-4, 4),
-              blurRadius: 10,
-              color: Color(0xFF212121).withOpacity(.2),
-            ),
-          ],
-          // color: Colors.amber.shade400,
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              "Donor #" + data.donorId.substring(data.donorId.length - 4),
-              style: TextStyle(
-                fontSize: 15,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            InkWell(
-              child: const Text(
-                "View Detail > ",
-                style: TextStyle(
-                  color: kPrimaryColor,
-                  decoration: TextDecoration.underline,
-                  fontSize: 12,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, '/signUp');
-              },
-            ),
-          ],
-        ),
-        if (status == "Active")
-          Container(
-              height: 50,
-              width: 120,
-              // padding: EdgeInsets.all(5),
-              child: CustomMainButton(
-                  onPressed: () {
-                    // _updateStatus(data.id, "Withdraw");
-                  },
-                  buttonName: "Withdraw")),
-      ]));
-}
+// Widget printRequestCard(
+//     MongoDbDynamicDatabaseModel data, BuildContext context, String status) {
+//   return Container(
+//       margin: const EdgeInsets.all(10),
+//       padding: EdgeInsets.all(10),
+//       // height: 200,
+//       decoration: BoxDecoration(
+//           boxShadow: <BoxShadow>[
+//             BoxShadow(
+//               offset: Offset(-4, 4),
+//               blurRadius: 10,
+//               color: Color(0xFF212121).withOpacity(.2),
+//             ),
+//           ],
+//           // color: Colors.amber.shade400,
+//           color: Colors.white,
+//           borderRadius: BorderRadius.all(Radius.circular(10))),
+//       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+//         Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//           children: [
+//             Text(
+//               "Donor #" + data.donorId.substring(data.donorId.length - 4),
+//               style: TextStyle(
+//                 fontSize: 15,
+//                 fontFamily: 'Poppins',
+//                 fontWeight: FontWeight.w600,
+//               ),
+//             ),
+//             InkWell(
+//               child: const Text(
+//                 "View Detail > ",
+//                 style: TextStyle(
+//                   color: kPrimaryColor,
+//                   decoration: TextDecoration.underline,
+//                   fontSize: 12,
+//                   fontFamily: 'Poppins',
+//                   fontWeight: FontWeight.w600,
+//                 ),
+//               ),
+//               onTap: () {
+//                 Navigator.pushNamed(context, '/signUp');
+//               },
+//             ),
+//           ],
+//         ),
+//         if (status == "Active")
+//           Container(
+//               height: 50,
+//               width: 120,
+//               // padding: EdgeInsets.all(5),
+//               child: CustomMainButton(
+//                   onPressed: () {
+//                     // _updateStatus(data.id, "Withdraw");
+//                   },
+//                   buttonName: "Withdraw")),
+//       ]));
+// }
 
 Future<void> _updateStatus(M.ObjectId id, String status) async {
   var result = MongoDatabase.updateRequestStatus(id, status);

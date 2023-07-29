@@ -65,11 +65,32 @@ class MongoDatabase {
     return arrData;
   }
 
-  static Future<List<Map<String, dynamic>>> getDonorData(
-      String bloodGroup) async {
+  // static Future<List<Map<String, dynamic>>> getDonorData(
+  //     String bloodGroup) async {
+  //   final arrData = await userInfoCollection
+  //       .find(where.eq("bloodGroup", bloodGroup))
+  //       .toList();
+  //   return arrData;
+  // }
+
+  static Future<List<Map<String, dynamic>>> getCustomDonorData(
+      String bloodGroup, String? currUserId) async {
+    print(currUserId);
+    final query = (where
+        .eq("requesterId", currUserId)
+        .oneFrom("status", ["Active", "Accepted"]));
+
+    final tempData = await userDynamicCollection.find(query).toList();
+    // final donorIds = tempData.map((doc) => doc['donorId']).toList();
+    // print(tempData);
+    // print(donorIds);
+    // return tempData;
     final arrData = await userInfoCollection
-        .find(where.eq("bloodGroup", bloodGroup))
+        .find(where
+            .eq("bloodGroup", bloodGroup)
+            .nin("userId", [for (var data in tempData) data['donorId']]))
         .toList();
+    // print(tempData);
     return arrData;
   }
 

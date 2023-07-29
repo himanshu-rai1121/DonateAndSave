@@ -13,173 +13,187 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            height: 180.0,
-            color: Theme.of(context).primaryColor,
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 25, 20, 20),
-                  child: Text(
-                    'Donate Platelet',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.w800,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              height: 180.0,
+              color: Theme.of(context).primaryColor,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 25, 20, 20),
+                    child: Text(
+                      'Donate Platelet',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.home,
-              color: Colors.deepPurple.shade700,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.home,
+                color: Colors.deepPurple.shade700,
+              ),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/home',
+                  (route) => false, // remove all other routes
+                );
+              },
             ),
-            title: Text('Home'),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/home',
-                (route) => false, // remove all other routes
-              );
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.leaf,
-              color: Colors.blueAccent.shade700,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.leaf,
+                color: Colors.blueAccent.shade700,
+              ),
+              title: Text('Be a donor'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/donation');
+              },
             ),
-            title: Text('Be a donor'),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/donation');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.shareAlt,
-              color: Colors.amber.shade300,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.shareAlt,
+                color: Colors.amber.shade300,
+              ),
+              title: Text('Share your story'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/story');
+              },
             ),
-            title: Text('Share your story'),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/story');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.tablets,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.tablets,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('Ways to Increase Platelet'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/plateletContent');
+              },
             ),
-            title: Text('Ways to Increase Platelet'),
-            // onTap: () {},
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/plateletContent');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.solidHospital,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('NearBy Labs'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/labs');
+              },
             ),
-            title: Text('NearBy Labs'),
-            // onTap: () {},
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/labs');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.solidHospital,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('History'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/history');
+              },
             ),
-            title: Text('History'),
-            // onTap: () {},
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/history');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.solidHospital,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('Register'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/signUp');
+              },
             ),
-            title: Text('Find Donor'),
-            // onTap: () {},
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/findDonor');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.solidHospital,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('Find Donor'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/findDonor');
+              },
             ),
-            title: Text('Requests'),
-            // onTap: () {},
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/requests');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.solidHospital,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('Requests'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/requests');
+              },
             ),
-            title: Text('Send Requests'),
-            // onTap: () {},
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/sendRequests');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.solidHospital,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('Send Requests'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/sendRequests');
+              },
             ),
-            title: Text('Login'),
-            // onTap: () {},
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/login');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.solidHospital,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('Login'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/login');
+              },
             ),
-            title: Text('viewDonorList'),
-            // onTap: () {},
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.pushNamed(context, '/viewDonorList');
-            },
-          ),
-          ListTile(
-            leading: FaIcon(
-              FontAwesomeIcons.solidHospital,
-              color: Colors.pinkAccent.shade400,
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('viewDonorList'),
+              // onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/viewDonorList');
+              },
             ),
-            title: Text('Logout'),
-            // onTap: () {},
-            onTap: () {
-              _signOut(context);
-            },
-          ),
-        ],
+            ListTile(
+              leading: FaIcon(
+                FontAwesomeIcons.solidHospital,
+                color: Colors.pinkAccent.shade400,
+              ),
+              title: Text('Logout'),
+              // onTap: () {},
+              onTap: () {
+                _signOut(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

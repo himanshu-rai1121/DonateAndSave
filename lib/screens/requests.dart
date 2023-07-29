@@ -212,7 +212,7 @@ class PrintRequestCard extends StatefulWidget {
 
 class _PrintRequestCardState extends State<PrintRequestCard> {
   String acceptStatus = "";
-  bool isCompleted = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
