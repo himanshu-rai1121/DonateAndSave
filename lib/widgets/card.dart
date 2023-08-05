@@ -18,7 +18,9 @@ import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class Cards extends StatefulWidget {
   String bloodGroup;
-  Cards({super.key, required this.bloodGroup});
+  bool
+      toFindAll; // true if find the list of all the donor irrespective of the bloodgroup asked
+  Cards({super.key, required this.bloodGroup, required this.toFindAll});
 
   @override
   State<Cards> createState() => _CardsState();
@@ -52,7 +54,10 @@ class _CardsState extends State<Cards> {
 
     return FutureBuilder(
         // future: MongoDatabase.getDonorData(widget.bloodGroup),
-        future: MongoDatabase.getCustomDonorData(widget.bloodGroup, currUserId),
+        future: widget.toFindAll
+            ? MongoDatabase.getCustomDonorData(widget.bloodGroup,
+                currUserId) // get list with matching blood group as searched
+            : MongoDatabase.allDonorData(currUserId), // get all the donor list
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -63,6 +68,7 @@ class _CardsState extends State<Cards> {
               var totalData = snapshot.data.length;
               print("total Data" + totalData.toString());
               return GridView.builder(
+                  // shrinkWrap: true,   // if error is : (The relevant error-causing widget was Column) then uncomment and check it
                   padding: const EdgeInsets.all(20.0),
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 400,

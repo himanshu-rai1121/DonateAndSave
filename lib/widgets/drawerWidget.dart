@@ -53,6 +53,20 @@ class CustomDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: FaIcon(
+                FontAwesomeIcons.home,
+                color: Colors.deepPurple.shade700,
+              ),
+              title: Text('New Home Page'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(
+                  context,
+                  '/newHome', // remove all other routes
+                );
+              },
+            ),
+            ListTile(
+              leading: FaIcon(
                 FontAwesomeIcons.leaf,
                 color: Colors.blueAccent.shade700,
               ),

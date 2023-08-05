@@ -9,12 +9,14 @@ import 'package:donate_platelets/screens/findDonor.dart';
 import 'package:donate_platelets/screens/history.dart';
 import 'package:donate_platelets/screens/loginPage.dart';
 import 'package:donate_platelets/screens/platelet_content_screen.dart';
+import 'package:donate_platelets/screens/profilePage.dart';
 import 'package:donate_platelets/screens/requests.dart';
 import 'package:donate_platelets/screens/sendRequests.dart';
 import 'package:donate_platelets/screens/signUp.dart';
 import 'package:donate_platelets/screens/storyForm.dart';
 import 'package:donate_platelets/screens/viewDonorList.dart';
 import 'package:donate_platelets/screens/webview.dart';
+import 'package:donate_platelets/widgets/bottomNavigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -60,9 +62,11 @@ class MyApp extends StatelessWidget {
             '/requests': (context) => Requests(),
             '/sendRequests': (context) => SendRequests(),
             '/login': (context) => LoginPage(),
+            '/profile': (context) => ProfilePage(),
             '/viewDonorList': (context) => ViewDonorList(
                   bloodGroup: 'A+',
                 ),
+            '/bottomNavigation': (context) => BottomNavigation(),
           },
           home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),

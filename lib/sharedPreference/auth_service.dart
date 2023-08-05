@@ -10,3 +10,11 @@ class AuthService {
 
   // Other authentication related methods can be added here
 }
+
+
+
+//  String userId = value.user!.uid;
+//                       // Save the userId to shared preferences
+//                       SharedPreferences prefs =
+//                           await SharedPreferences.getInstance();
+//                       prefs.setString('userId', userId);

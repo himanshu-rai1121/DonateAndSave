@@ -65,7 +65,7 @@ class MongoDatabase {
     return arrData;
   }
 
-  // static Future<List<Map<String, dynamic>>> getDonorData(
+  // static Future<List<Map<String, dynamic>>> getDonorData(    // it find all donor without any filter
   //     String bloodGroup) async {
   //   final arrData = await userInfoCollection
   //       .find(where.eq("bloodGroup", bloodGroup))
@@ -74,7 +74,9 @@ class MongoDatabase {
   // }
 
   static Future<List<Map<String, dynamic>>> getCustomDonorData(
-      String bloodGroup, String? currUserId) async {
+      // show this result on search page
+      String bloodGroup,
+      String? currUserId) async {
     print(currUserId);
     final query = (where
         .eq("requesterId", currUserId)
@@ -91,6 +93,22 @@ class MongoDatabase {
             .nin("userId", [for (var data in tempData) data['donorId']]))
         .toList();
     // print(tempData);
+    return arrData;
+  }
+
+  static Future<List<Map<String, dynamic>>> allDonorData(
+      // show this result on home page, without any filter
+      String? currUserId) async {
+    final query = (where
+        .eq("requesterId", currUserId)
+        .oneFrom("status", ["Active", "Accepted"]));
+
+    final tempData = await userDynamicCollection.find(query).toList();
+    final arrData = await userInfoCollection
+        .find(where
+            .eq('isVerified', true)
+            .nin("userId", [for (var data in tempData) data['donorId']]))
+        .toList();
     return arrData;
   }
 

@@ -110,6 +110,24 @@ class StoryScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
+                                  padding: EdgeInsets.all(8.0),
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          bottom: BorderSide(
+                                    color: Color(0xFFFFBF05).withOpacity(.10),
+                                  ))),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Add Images",
+                                      hintStyle: TextStyle(
+                                        color: Colors.grey[400],
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
                                   padding: EdgeInsets.only(
                                     top: 35.0,
                                     bottom: 35,

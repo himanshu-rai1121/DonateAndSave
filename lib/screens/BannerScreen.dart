@@ -11,6 +11,7 @@ import 'package:donate_platelets/constants/color_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../dbHelper/mondodb.dart';
+import '../widgets/bottomNavigation.dart';
 
 class BannerScreen extends StatelessWidget {
   bool isAlreadyLogin;
@@ -93,7 +94,9 @@ class BannerScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           if (isAlreadyLogin) {
-                            Navigator.pushReplacementNamed(context, '/home');
+                            // Navigator.pushReplacementNamed(context, '/home');
+                            Navigator.pushReplacementNamed(
+                                context, '/bottomNavigation');
                           } else {
                             Navigator.pushReplacementNamed(context, '/login');
                           }

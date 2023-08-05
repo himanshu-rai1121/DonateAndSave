@@ -128,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 2.0,
                 Cards(
                   bloodGroup: 'A+',
+                  toFindAll: true,
                 )),
           ),
         ],
