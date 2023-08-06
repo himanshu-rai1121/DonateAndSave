@@ -206,7 +206,7 @@ class _LoginState extends State<Login> {
                       prefs.setString('userId', userId);
 
                       // FirebaseUserInfo.setid(value.user!.email!);
-                      Navigator.pushNamed(context, "/home");
+                      Navigator.pushNamed(context, "/bottomNavigation");
                     }).onError((error, stackTrace) {
                       print(error.toString());
                       setState(() {
@@ -484,7 +484,7 @@ class _SignUpState extends State<SignUp> {
                               .then((value) async {
                             // print(value);
                             print("account created");
-                            Navigator.pushNamed(context, '/home');
+                            Navigator.pushNamed(context, '/bottomNavigation');
 
                             // Store the user name, email and user image in firestore
                             FirebaseFirestore.instance

@@ -60,7 +60,6 @@ class _ViewDonorListState extends State<ViewDonorList> {
         child: FadeAnimation(
             2.0,
             Cards(
-              toFindAll: false,
               bloodGroup: widget.bloodGroup,
             )),
       ),

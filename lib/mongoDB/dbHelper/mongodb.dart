@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:donate_platelets/mongoDB/dbHelper/constants.dart';
@@ -62,6 +63,12 @@ class MongoDatabase {
 
   static Future<List<Map<String, dynamic>>> getData() async {
     final arrData = await userInfoCollection.find().toList();
+    return arrData;
+  }
+
+  static Future<Map<String, dynamic>> getCurrUserData(String currUserId) async {
+    final arrData =
+        await userInfoCollection.findOne(where.eq("userId", currUserId));
     return arrData;
   }
 

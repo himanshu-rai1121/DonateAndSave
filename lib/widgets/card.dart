@@ -18,9 +18,7 @@ import 'package:mongo_dart/mongo_dart.dart' as M;
 
 class Cards extends StatefulWidget {
   String bloodGroup;
-  bool
-      toFindAll; // true if find the list of all the donor irrespective of the bloodgroup asked
-  Cards({super.key, required this.bloodGroup, required this.toFindAll});
+  Cards({super.key, required this.bloodGroup});
 
   @override
   State<Cards> createState() => _CardsState();
@@ -43,21 +41,12 @@ class _CardsState extends State<Cards> {
     });
   }
 
-  // bool isRequested = false;
   @override
   Widget build(BuildContext context) {
-    // void Requested() {
-    //   setState(() {
-    //     isRequested = true;
-    //   });
-    // }
-
     return FutureBuilder(
         // future: MongoDatabase.getDonorData(widget.bloodGroup),
-        future: widget.toFindAll
-            ? MongoDatabase.getCustomDonorData(widget.bloodGroup,
-                currUserId) // get list with matching blood group as searched
-            : MongoDatabase.allDonorData(currUserId), // get all the donor list
+        future: MongoDatabase.getCustomDonorData(widget.bloodGroup,
+            currUserId), // get list with matching blood group as searched
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -67,6 +56,13 @@ class _CardsState extends State<Cards> {
             if (snapshot.hasData) {
               var totalData = snapshot.data.length;
               print("total Data" + totalData.toString());
+              if (totalData < 1)
+                return Center(
+                  child: Text(
+                    "Sorry No Donor Available",
+                    style: TextStyle(fontFamily: 'poppins', fontSize: 18),
+                  ),
+                );
               return GridView.builder(
                   // shrinkWrap: true,   // if error is : (The relevant error-causing widget was Column) then uncomment and check it
                   padding: const EdgeInsets.all(20.0),

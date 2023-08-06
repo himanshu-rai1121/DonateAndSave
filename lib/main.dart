@@ -1,6 +1,5 @@
 import 'package:donate_platelets/models/User.dart';
 import 'package:donate_platelets/providers/information.dart';
-import 'package:donate_platelets/providers/users.dart';
 import 'package:donate_platelets/screens/BannerScreen.dart';
 import 'package:donate_platelets/screens/HomeScreen.dart';
 import 'package:donate_platelets/screens/donationForm.dart';
@@ -12,7 +11,7 @@ import 'package:donate_platelets/screens/platelet_content_screen.dart';
 import 'package:donate_platelets/screens/profilePage.dart';
 import 'package:donate_platelets/screens/requests.dart';
 import 'package:donate_platelets/screens/sendRequests.dart';
-import 'package:donate_platelets/screens/signUp.dart';
+import 'package:donate_platelets/screens/register.dart';
 import 'package:donate_platelets/screens/storyForm.dart';
 import 'package:donate_platelets/screens/viewDonorList.dart';
 import 'package:donate_platelets/screens/webview.dart';
@@ -58,7 +57,7 @@ class MyApp extends StatelessWidget {
             '/history': (context) => History(),
             '/findDonor': (context) => FindDonor(),
             "/donor": (context) => Donor(),
-            '/signUp': (context) => SignUpPage(),
+            '/register': (context) => Register(),
             '/requests': (context) => Requests(),
             '/sendRequests': (context) => SendRequests(),
             '/login': (context) => LoginPage(),

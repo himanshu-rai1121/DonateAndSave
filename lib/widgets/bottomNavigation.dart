@@ -3,7 +3,7 @@ import 'package:donate_platelets/screens/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:donate_platelets/screens/history.dart';
 import 'package:donate_platelets/screens/requests.dart';
-import 'package:donate_platelets/screens/signUp.dart';
+import 'package:donate_platelets/screens/register.dart';
 
 import '../constants/color_constants.dart';
 import '../screens/findDonor.dart';

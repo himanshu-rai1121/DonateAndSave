@@ -10,14 +10,14 @@ import '../sharedPreference/auth_service.dart';
 import '../widgets/drawerWidget.dart';
 import '../widgets/snackbar.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<Register> createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends State<Register> {
   String? userId = "";
 
   @override

@@ -1,7 +1,6 @@
 import 'package:donate_platelets/animation/FadeAnimation.dart';
 import 'package:donate_platelets/constants/color_constants.dart';
 import 'package:donate_platelets/providers/information.dart';
-import 'package:donate_platelets/providers/users.dart';
 import 'package:donate_platelets/widgets/card.dart';
 import 'package:donate_platelets/widgets/drawerWidget.dart';
 import 'package:donate_platelets/widgets/info_card_widget.dart';
@@ -128,7 +127,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 2.0,
                 Cards(
                   bloodGroup: 'A+',
-                  toFindAll: true,
                 )),
           ),
         ],
